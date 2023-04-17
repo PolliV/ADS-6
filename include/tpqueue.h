@@ -9,6 +9,7 @@ class TPQueue {
     T* arr;
     int head, tail;
     int count;
+    
  public:
   TPQueue() : head(0), tail(0), count(0) { arr = new T[size]; }
   bool IsEmpty() const {
@@ -25,7 +26,7 @@ class TPQueue {
       return arr[head++ % size];
     }
   }
-  void push() {
+  void push(const T& value) {
     if (IsFull()) {
       throw std::string("Full!");
     } else {
