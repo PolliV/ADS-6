@@ -9,7 +9,6 @@ class TPQueue {
     T* arr;
     int head, tail;
     int count;
-    
  public:
   TPQueue() : head(0), tail(0), count(0) { arr = new T[size]; }
   bool IsEmpty() const {
@@ -23,21 +22,21 @@ class TPQueue {
       throw std::string("Empty!");
     } else {
       count--;
-      return arr[first++ % size];
+      return arr[head++ % size];
     }
   }
-  void Push() {
+  void push() {
     if (IsFull()) {
       throw std::string("Full!");
     } else {
-      int len = tail;
+      int n = tail;
       arr[tail % size] = value;
-      T temp = arr[len % size];
-      while (arr[len % size].prior > arr[(len - 1) % size].prior && len > head) {
-	temp = arr[len % size];
-	arr[len % size] = arr[(len - 1) % size];
-	arr[(len - 1) % size] = temp;
-	len--;
+      T temp = arr[n % size];
+      while (arr[n % size].prior > arr[(n - 1) % size].prior && n > head) {
+        temp = arr[n % size];
+        arr[n % size] = arr[(n - 1) % size];
+        arr[(n - 1) % size] = temp;
+        n--;
       }
       count++;
       tail++;
